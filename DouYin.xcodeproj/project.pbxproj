@@ -28,7 +28,6 @@
 		D07C6A7021917AAC00715207 /* fishhook.h in Headers */ = {isa = PBXBuildFile; fileRef = D07C6A6F21917AAC00715207 /* fishhook.h */; };
 		D07C6A7221917AAC00715207 /* DouYinDylib.h in Headers */ = {isa = PBXBuildFile; fileRef = D07C6A7121917AAC00715207 /* DouYinDylib.h */; };
 		D07C6A7421917AAC00715207 /* DouYinDylib.m in Sources */ = {isa = PBXBuildFile; fileRef = D07C6A7321917AAC00715207 /* DouYinDylib.m */; };
-		D07C6A7F219189C100715207 /* HTSVideoConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = D07C6A7E219189C100715207 /* HTSVideoConfig.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +54,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D0751CDE2191ABDC0077FF4F /* AWENetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AWENetworkService.h; path = DouYin/Aweme_Headers/AWENetworkService.h; sourceTree = SOURCE_ROOT; };
 		D07C6A3021917AAC00715207 /* DouYin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DouYin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D07C6A3321917AAC00715207 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D07C6A3521917AAC00715207 /* quick-resign.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "quick-resign.sh"; path = "Scripts/quick-resign.sh"; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 		D07C6A6F21917AAC00715207 /* fishhook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = fishhook.h; path = fishhook/fishhook.h; sourceTree = "<group>"; };
 		D07C6A7121917AAC00715207 /* DouYinDylib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DouYinDylib.h; sourceTree = "<group>"; };
 		D07C6A7321917AAC00715207 /* DouYinDylib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DouYinDylib.m; sourceTree = "<group>"; };
-		D07C6A7E219189C100715207 /* HTSVideoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTSVideoConfig.h; path = DouYin/Aweme_Headers/HTSVideoConfig.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,8 +188,6 @@
 		D07C6A4D21917AAC00715207 /* Logos */ = {
 			isa = PBXGroup;
 			children = (
-				D07C6A7E219189C100715207 /* HTSVideoConfig.h */,
-				D0751CDE2191ABDC0077FF4F /* AWENetworkService.h */,
 				D07C6A4E21917AAC00715207 /* DouYinDylib.xm */,
 				D07C6A4F21917AAC00715207 /* DouYinDylib.mm */,
 			);
@@ -257,7 +252,6 @@
 			files = (
 				D07C6A5721917AAC00715207 /* MDCycriptManager.h in Headers */,
 				D07C6A5B21917AAC00715207 /* MDMethodTrace.h in Headers */,
-				D07C6A7F219189C100715207 /* HTSVideoConfig.h in Headers */,
 				D07C6A6421917AAC00715207 /* LLDBTools.h in Headers */,
 				D07C6A5321917AAC00715207 /* MDConfigManager.h in Headers */,
 				D07C6A5F21917AAC00715207 /* ANYMethodLog.h in Headers */,

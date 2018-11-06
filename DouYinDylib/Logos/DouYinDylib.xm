@@ -1,7 +1,6 @@
 // See http://iphonedevwiki.net/index.php/Logos
 
 #import <UIKit/UIKit.h>
-#import "HTSVideoConfig.h"
 #import <substrate.h>
 
 /********************************************* 长视频权限相关 ***************************************/
@@ -1217,7 +1216,8 @@ long long _variableHooked;
 %hook AWEFilePublisherFactory
 + (id)publisherForResourceType:(id)arg2 resourceURL:(id)arg3 publishViewModel:(id)arg4
 {
-    %orig;
+    id res = %orig;
+    return res;
 }
 
 %end
@@ -1311,8 +1311,74 @@ long long _variableHooked;
     return obj;
 }
 
-+ (id)publishAweme:(id)arg2 completion:(id)arg3
+/// 视频发布完成后的回调
++ (id)publishAweme:(id)publishRequestModel completion:(id)arg3
 {
+    /**
+     打印参数：publishRequestModel
+     
+     Printing description of arg2:
+     <AWEVideoPublishRequestModel: 0x12a50fb30> {
+     activityID = 0;
+     activityTimerange =     (
+     );
+     activityType = 0;
+     bodydanceScore = 0;
+     cameraPositions = "";
+     challenges = "<null>";
+     duetSourceAwemeID = "<null>";
+     duration = "39.15";
+     effects = "\U65e0";
+     eye = "";
+     filters = "";
+     game2DScore = 0;
+     gameType = 0;
+     isExposureOptmize = 0;
+     isFastImportVideo = 0;
+     isHashTag = 1;
+     isLongVideo = 1;
+     isMultiVideoUpload = 0;
+     itemComment = 0;
+     latitude = "<null>";
+     longitude = "<null>";
+     materialID = "<null>";
+     microAppID = "<null>";
+     musicID = 6509762147013266190;
+     mute = "<null>";
+     needUploadAudioTrack = 0;
+     newSDK = 1;
+     original = 0;
+     pen = "<null>";
+     poiID = "<null>";
+     poiName = "<null>";
+     prettify = "";
+     privacyType = 0;
+     reactFromID = "<null>";
+     reactOriginID = "<null>";
+     reactViewID = "<null>";
+     segmentCount = 1;
+     segmentDurations = "39.150";
+     shape = "";
+     shootWay = "direct_shoot";
+     shopDraftID = "<null>";
+     smooth = "";
+     speed = "";
+     stickers = "";
+     storyTitle = "<null>";
+     syncToHuoshan = 0;
+     syncToToutiao = 0;
+     tanning = "";
+     text = "hello world.";
+     textExtra =     (
+     );
+     transitionType = "<null>";
+     useDelayRecord = "";
+     useStabilization = "";
+     videoID = v0200f260000bfgoq2g6h8rr2egihkd0;
+     videoType = 0;
+     vrType = 0;
+     }
+     */
     id obj = %orig;
     return obj;
 }
