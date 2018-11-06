@@ -55,6 +55,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D0751CDE2191ABDC0077FF4F /* AWENetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AWENetworkService.h; path = DouYin/Aweme_Headers/AWENetworkService.h; sourceTree = SOURCE_ROOT; };
 		D07C6A3021917AAC00715207 /* DouYin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DouYin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D07C6A3321917AAC00715207 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D07C6A3521917AAC00715207 /* quick-resign.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "quick-resign.sh"; path = "Scripts/quick-resign.sh"; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				D07C6A7E219189C100715207 /* HTSVideoConfig.h */,
+				D0751CDE2191ABDC0077FF4F /* AWENetworkService.h */,
 				D07C6A4E21917AAC00715207 /* DouYinDylib.xm */,
 				D07C6A4F21917AAC00715207 /* DouYinDylib.mm */,
 			);

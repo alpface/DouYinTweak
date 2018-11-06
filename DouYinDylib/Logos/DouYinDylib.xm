@@ -4,6 +4,7 @@
 #import "HTSVideoConfig.h"
 #import <substrate.h>
 
+/********************************************* 长视频权限相关 ***************************************/
 
 %hook AWEVideoRecorderController
 
@@ -1013,4 +1014,325 @@ long long _variableHooked;
 }
 %end
 
+/********************************************* 发布视频相关 ***************************************/
+%hook AWEVideoNewPublishViewController
 
+- (void)_publish
+{
+    %orig;
+    
+    /*
+     STK35 = r7;
+     r7 = &arg_C;
+     sp = sp - 0x60;
+     r11 = self;
+     r3 = *___stack_chk_guard;
+     arg_5C = r3;
+     [AWESecAntiSpam startForScene:@"camera"];
+     r10 = @selector(defaultCenter);
+     r5 = [[HTSServiceCenter defaultCenter] retain];
+     arg_10 = @selector(class);
+     [TrackerService class];
+     r6 = @selector(getService:);
+     r4 = [[r5 getService:r2] retain];
+     arg_8 = 0x0;
+     asm{ strd       r0, r0, [sp] };
+     arg_14 = @selector(trackEvent:label:value:extra:attributes:);
+     [r4 trackEvent:@"publish" label:@"submit" value:STK1 extra:STK0 attributes:STK-1];
+     [r4 release];
+     [r5 release];
+     r0 = [NSMutableArray array];
+     r7 = r7;
+     r8 = [r0 retain];
+     if ([r11 shouldSyncToHuoshan] != 0x0) {
+     [r8 addObject:@"hotsoon"];
+     }
+     if ([r11 shouldSyncToToutiao] != 0x0) {
+     [r8 addObject:@"toutiao"];
+     }
+     r4 = [NSString alloc];
+     var_0 = 0x0;
+     r5 = [[NSJSONSerialization dataWithJSONObject:r8 options:0x0 error:STK-1] retain];
+     r4 = [r4 initWithData:r5 encoding:0x4];
+     [r5 release];
+     r10 = [[HTSServiceCenter defaultCenter] retain];
+     [TrackerService class];
+     r0 = [r10 getService:r2];
+     r7 = r7;
+     r6 = [r0 retain];
+     arg_4C = @"to_app";
+     r0 = r8;
+     arg_10 = r8;
+     r8 = 0x0;
+     r0 = [r0 count];
+     r2 = NSNumber;
+     arg_C = r4;
+     asm{ it         ne };
+     if (r0 != 0x0) {
+     }
+     asm{ strdne     r0, r3, [sp, #0x50] };
+     r4 = [[r2 numberWithInt:0x0] retain];
+     var_0 = 0x2;
+     arg_58 = r4;
+     r5 = [[NSDictionary dictionaryWithObjects:&arg_54 forKeys:&arg_4C count:STK-1] retain];
+     arg_8 = r5;
+     asm{ strd       r8, r8, [sp] };
+     [r6 trackEvent:r2 label:STK3 value:STK31 extra:STK30 attributes:STK29];
+     [r5 release];
+     [r4 release];
+     [r6 release];
+     [r10 release];
+     r0 = [r11 buttonSyncToHuoshan];
+     r7 = r7;
+     r6 = [r0 retain];
+     r5 = @selector(isSelected);
+     r0 = [r6 isSelected];
+     asm{ it         eq };
+     if (r0 == 0x0) {
+     }
+     r4 = @selector(saveUserRelatedBool:forKey:);
+     [r11 saveUserRelatedBool:r2 forKey:STK3];
+     [r6 release];
+     r0 = [r11 buttonSyncToToutiao];
+     r7 = r7;
+     r0 = [r0 retain];
+     r6 = r0;
+     r0 = [r0 isSelected];
+     COND = r0 != 0x0;
+     r0 = r11;
+     asm{  };
+     if (!COND) {
+     }
+     [r0 saveUserRelatedBool:r2 forKey:STK3];
+     [r6 release];
+     r0 = [AWEStorage studioStorage];
+     r7 = r7;
+     r4 = [r0 retain];
+     [r4 setBool:0x1 forKey:@"AWETargetUserAlreadyShowSyncToutiaoKey"];
+     [r4 release];
+     if (sub_1c10dc8() != 0x0) {
+     asm{ strdeq     r3, r8, [sp, #0x38] };
+     r8 = *_NSConcreteStackBlock;
+     asm{ strd       r1, r2, [sp, #0x40] };
+     arg_48 = r11;
+     arg_34 = r8;
+     r6 = objc_retainBlock(&arg_34);
+     r0 = [r11 buttonSaveAlbum];
+     r0 = [r0 retain];
+     r4 = r0;
+     r5 = [r0 isSelected];
+     [r4 release];
+     r0 = [PHPhotoLibrary authorizationStatus];
+     if ((r5 == 0x0) || (r0 != 0x0)) {
+     r1 = *(r6 + 0xc);
+     (r1)(r6, r1);
+     }
+     else {
+     r8 = *_NSConcreteStackBlock;
+     arg_1C = 0xc2000000;
+     r4 = AWEDeviceManager;
+     asm{ stm.w      r3, {r0, r1, r2, r11} };
+     arg_18 = r8;
+     r0 = [r6 retain];
+     arg_30 = r0;
+     [r4 requestPhotoLibraryPermission:&arg_18];
+     [arg_30 release];
+     }
+     asm{ ldrd       r5, r4, [sp, #0xc] };
+     [r6 release];
+     }
+     else {
+     [AWETapticEngineManager notifyFailure];
+     [AWEToast show:cfstring_S_MRQ____N_S_u];
+     asm{ ldrd       r5, r4, [sp, #0xc] };
+     }
+     [r5 release];
+     [r4 release];
+     r1 = *___stack_chk_guard;
+     asm{ ittt       eq };
+     if (r1 == arg_5C) {
+     }
+     if (CPU_FLAGS & NE) {
+     Pop();
+     Pop();
+     Pop();
+     }
+     if (CPU_FLAGS & NE) {
+     return;
+     }
+     r0 = __stack_chk_fail();
+     return;
+     */
+}
+
+%end
+
+%hook HTSServiceCenter
+
+- (id)getService:(id)obj
+{
+    id service = %orig;
+    return service;
+}
+
+%end
+
+// 里面封装了用户操作的一些接口，比如:点赞、关注
+%hook AWEUserService
+
+%end
+
+%hook TrackerService
+
+- (void)trackEvent:(id)arg2 label:(id)arg3 value:(id)arg4 extra:(id)arg5 attributes:(id)arg6
+{
+    %orig;
+}
+
+%end
+
+%hook AWEPublishResultHandler
+- (void)taskDidAppend:(id)arg2
+{
+    
+    %orig;
+}
+
+- (void)task:(id)arg2 didFinishWithResult:(id)arg3 error:(id)arg4
+{
+    %orig;
+}
+
+%end
+
+// 发布视频
+%hook AWEVideoPublishNormalTask
+- (void)postAweme:(id)arg2
+{
+    %orig;
+}
+
+%end
+
+%hook AWEFilePublisherFactory
++ (id)publisherForResourceType:(id)arg2 resourceURL:(id)arg3 publishViewModel:(id)arg4
+{
+    %orig;
+}
+
+%end
+
+%hook AWEVideoPublishManager
+
++ (id)sharedInstance
+{
+    id _instance = %orig;
+    return _instance;
+}
+
++ (id)requestVideoUploadURLWithParameters:(id)arg2 completion:(id)arg3
+{
+//    r8 = [arg2 retain];
+//    r6 = [arg3 retain];
+//    r10 = [[NSString stringWithFormat:@"%@/aweme/v1/create/video/", @"https://aweme.snssdk.com"] retain];
+//    r5 = [AWEVideoPublishResponseModel class];
+//    r0 = *_NSConcreteStackBlock;
+//    arg_8 = r0;
+//    arg_C = 0xc2000000;
+//    arg_10 = 0x0;
+//    asm{ strd       r2, r0, [sp, #0x14] };
+//    arg_1C = r6;
+//    r6 = [r6 retain];
+//    asm{ strd       r5, r0, [sp] };
+//    r0 = [AWENetworkService getWithURLString:r10 params:r8 modelClass:STK0 completion:STK-1];
+//    return r0;
+    
+    id obj = %orig;
+    return obj;
+}
+
++ (id)requestUploadParametersWithCompletion:(id)arg2
+{
+    id obj = %orig;
+    return obj;
+}
+
++ (id)requestUploadParametersWithParameters:(id)arg2 completion:(id)arg3
+{
+//    r8 = [arg2 retain];
+//    r6 = [arg3 retain];
+//    r10 = [[NSString stringWithFormat:@"%@/aweme/v1/upload/authkey/", @"https://aweme.snssdk.com"] retain];
+//    r5 = [AWEResourceUploadParametersResponseModel class];
+//    r0 = *_NSConcreteStackBlock;
+//    arg_8 = r0;
+//    arg_C = 0xc2000000;
+//    arg_10 = 0x0;
+//    asm{ strd       r2, r0, [sp, #0x14] };
+//    arg_1C = r6;
+//    r6 = [r6 retain];
+//    asm{ strd       r5, r0, [sp] };
+//    r0 = [AWENetworkService postWithURLString:r10 params:r8 modelClass:STK0 completion:STK-1];
+//    return r0;
+    id obj = %orig;
+    return obj;
+}
+
++ (id)requestVideoUrlWithVideoId:(id)arg2 completion:(id)arg3
+{
+//    arg_8 = [arg2 retain];
+//    r6 = [arg3 retain];
+//    r11 = [[NSString stringWithFormat:@"%@/aweme/v1/sign/gain/url/", @"https://aweme.snssdk.com"] retain];
+//    asm{ strd       r3, r5, [sp, #0xc] };
+//    var_0 = 0x1;
+//    r4 = [[NSDictionary dictionaryWithObjects:(sp - 0x2c) + 0x10 forKeys:(sp - 0x2c) + 0xc count:STK-1] retain];
+//    [AWEGetVideoUrlResponse class];
+//    arg_14 = *_NSConcreteStackBlock;
+//    arg_18 = 0xc2000000;
+//    arg_1C = 0x0;
+//    arg_20 = 0x232ade9;
+//    asm{ strd       r0, r6, [sp, #0x24] };
+//    r6 = [r6 retain];
+//    asm{ strd       r5, r0, [sp] };
+//    r0 = [AWENetworkService getWithURLString:r11 params:r4 modelClass:STK0 completion:STK-1];
+//    return r0;
+    id obj = %orig;
+    return obj;
+}
+
++ (id)uploadVideo:(id)arg2 uploadURL:(id)arg3 headerField:(id)arg4 parameters:(id)arg5 timeout:(id)arg6 progress:(id)arg7 completion:(id)arg8
+{
+//    arg_20 = AWENetworkService;
+//    [AWEBaseTTApiModel class];
+//    arg_2C = *_NSConcreteStackBlock;
+//    arg_10 = @"file";
+//    r0 = [AWENetworkService uploadWithURLString:arg_28 params:r8 headerField:STK5 timeout:STK4 fileURL:STK3 fileName:STK2 progress:STK1 modelClass:STK0 completion:STK-1];
+//    return r0;
+    id obj = %orig;
+    return obj;
+}
+
++ (id)publishAweme:(id)arg2 completion:(id)arg3
+{
+    id obj = %orig;
+    return obj;
+}
+
++ (id)publishPhotoAweme:(id)arg2 completion:(id)arg3
+{
+    id obj = %orig;
+    return obj;
+}
+
+%end
+
+/// 上传视频的类
+%hook AWENetworkService
++ (id)uploadWithURLString:(id)arg1 parameters:(id)arg2 headerField:(id)arg3 timeout:(double)arg4 constructingBodyWithBlock:(id)arg5 progress:(id *)arg6 needcommonParams:(_Bool)arg7 modelClass:(Class)arg8 callback:(id)arg9 {
+    id obj = %orig;
+    return obj;
+}
++ (id)uploadWithURLString:(id)arg1 params:(id)arg2 headerField:(id)arg3 timeout:(double)arg4 fileURL:(id)arg5 fileName:(id)arg6 progress:(id *)arg7 modelClass:(Class)arg8 completion:(id)arg9 {
+    id obj = %orig;
+    return obj;
+}
+%end
