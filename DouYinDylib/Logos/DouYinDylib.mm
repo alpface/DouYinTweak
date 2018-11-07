@@ -2,7 +2,6 @@
 
 
 #import <UIKit/UIKit.h>
-#import "HTSVideoConfig.h"
 #import <substrate.h>
 
 
