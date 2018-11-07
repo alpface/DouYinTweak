@@ -1207,7 +1207,7 @@ long long _variableHooked;
 
 // 发布视频
 %hook AWEVideoPublishNormalTask
-- (void)postAweme:(id)arg2
+- (void)postAweme:(id)arg2 // 发布视频
 {
     %orig;
 }
@@ -1336,3 +1336,27 @@ long long _variableHooked;
     return obj;
 }
 %end
+
+
+/********************************************* Other ***************************************/
+%hook AWEAwemeShareViewController
+- (id)_shareModeLogWithShareType:(long long)arg1 {
+    id obj = %orig;
+    return obj;
+}
+- (void)p_showUnreviewedToastWithType:(long long)arg1 {
+    %orig;
+}
+- (void)p_showUnreviewedShareGuideWithType:(long long)arg1 {
+    %orig;
+}
+- (_Bool)p_unreviewedVideoToLink:(long long)arg1 {
+    _Bool res = %orig;
+    return res;
+}
+- (void)clicked:(id)arg2 {
+    %orig;
+}
+%end
+
+
